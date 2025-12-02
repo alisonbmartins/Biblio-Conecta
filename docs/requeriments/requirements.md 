@@ -1,0 +1,96 @@
+# 📌 Requisitos do Sistema — BibliotecaConecta
+
+Este documento apresenta os requisitos funcionais e não funcionais do sistema multiplataforma **BibliotecaConecta**, composto por Backend, Frontend Web e Aplicativo Mobile.
+
+---
+
+# 1. 🎯 Objetivo Geral
+Desenvolver uma plataforma completa para comunicação entre bibliotecas e seus usuários, permitindo cadastro, consulta, reservas e gerenciamento de acervo.
+
+---
+
+# 2. 👥 Perfis de Usuário
+- **Usuário comum**
+  - Consulta catálogo
+  - Realiza reservas
+  - Visualiza histórico
+  - Faz login e gerencia conta
+  
+- **Administrador**
+  - Gerencia livros
+  - Controla empréstimos e devoluções
+  - Acompanha métricas básicas
+  - Cria/edita usuários
+
+---
+
+# 3. 📌 Requisitos Funcionais (RF)
+
+## RF01 — Gerenciamento de Usuários
+- RF01.1: Login via e-mail e senha  
+- RF01.2: Persistência de sessão via Token JWT  
+- RF01.3: Administradores podem criar outros usuários  
+
+## RF02 — Catálogo de Livros
+- RF02.1: Listar todos os livros  
+- RF02.2: Buscar por título, autor ou categoria  
+- RF02.3: Visualizar detalhes do livro  
+
+## RF03 — Reservas
+- RF03.1: Usuários podem realizar reservas  
+- RF03.2: Sistema deve impedir reserva se o livro estiver indisponível  
+- RF03.3: Listar reservas do usuário  
+
+## RF04 — Empréstimos
+- RF04.1: Administrador registra empréstimo  
+- RF04.2: Administrador registra devolução  
+- RF04.3: Sistema calcula atraso automaticamente  
+
+## RF05 — Gerenciamento de Acervo (Admin)
+- RF05.1: Criar, editar e excluir livros  
+- RF05.2: Inserir capa, descrição, categoria e disponibilidade  
+
+---
+
+# 4. ⚙️ Requisitos Não Funcionais (RNF)
+
+## RNF01 — Segurança
+- Uso de **JWT** para autenticação  
+- Senhas armazenadas com **hash bcrypt**  
+- API protegida por **middleware**  
+
+## RNF02 — Usabilidade
+- Interface responsiva  
+- Navegação simples  
+- Fluxos diretos e intuitivos  
+
+## RNF03 — Desempenho
+- API deve responder em até 180ms em média  
+- Buscar até 5.000 livros sem quebra  
+
+## RNF04 — Compatibilidade
+- Frontend Web compatível com Chrome, Edge, Firefox  
+- Mobile compatível com Android e iOS (via Expo)  
+
+## RNF05 — Banco de Dados
+- Persistência utilizando **SQLite** + Prisma ORM  
+
+---
+
+# 5. 📦 Requisitos de Instalação
+
+## Backend
+- Node 18+
+- Prisma ORM
+- SQLite
+
+## Web
+- Vite + React
+
+## Mobile
+- Expo SDK 48+
+
+---
+
+# 6. ✔️ Conclusão
+Os requisitos aqui definidos guiam o desenvolvimento completo do **BibliotecaConecta**, garantindo qualidade, segurança e boa experiência de uso.

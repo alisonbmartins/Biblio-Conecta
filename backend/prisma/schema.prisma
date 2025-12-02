@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./database.db"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("user")
+  createdAt DateTime @default(now())
+  loans     Loan[]
+  reservations Reservation[]
+}
+
+model Book {
+  id        Int      @id @default(autoincrement())
+  title     String
+  author    String
+  category  String
+  year      Int?
+  description String?
+  createdAt DateTime @default(now())
+  copies    Copy[]
+  reservations Reservation[]
+}
+
+model Copy {
+  id        Int      @id @default(autoincrement())
+  bookId    Int
+  available Boolean  @default(true)
+  book      Book     @relation(fields: [bookId], references: [id])
+  loans     Loan[]
+}
+
+model Loan {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  copyId    Int
+  loanDate  DateTime @default(now())
+  returnDate DateTime?
+  status    String   @default("active")
+  user      User     @relation(fields: [userId], references: [id])
+  copy      Copy     @relation(fields: [copyId], references: [id])
+}
+
+model Reservation {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  bookId    Int
+  reservationDate DateTime @default(now())
+  status    String   @default("pending")
+  user      User     @relation(fields: [userId], references: [id])
+  book      Book     @relation(fields: [bookId], references: [id])
+}
